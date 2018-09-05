@@ -1,9 +1,8 @@
 package co.simplon.model;
 
 
-import java.util.ArrayList;
+
 import java.util.Calendar;
-import java.util.List;
 import java.util.TimeZone;
 
 import javax.persistence.Column;
@@ -13,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 import javax.persistence.SequenceGenerator;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -27,47 +26,105 @@ public class HistoryReport {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "historyreport_generator")
  	@SequenceGenerator(name="historyreport_generator", sequenceName = "historyreport_seq", allocationSize=1)
 	@Column(name = "ID")
-	private Long id_historyreport;
-	
-/*	@Column(name = "IDAPPLI",nullable=false)
-	private String id_aplication;*/
-		
-/*	@Column(name = "IDETAT",nullable=false)
-	private String id_etat;*/
-	
-/*	@ManyToOne
+	private Long id;
+/*	
+	@OneToMany(mappedBy="reportetat")
+    private List<Etat> etatList = new ArrayList<Etat>();*/
+	@ManyToOne
 	@JoinColumn(name = "etat")
-	private Etat etat;*/
-	@OneToMany
-	private List <Etat> etat = new ArrayList<>();
+	private Etat etat;
 	
-/*	@Column(name = "IDSCENA",nullable=false)
-	private String id_scenario;
-	*/
-/*	@ManyToOne
-	@JoinColumn(name = "scenario")
-	private Scenario scenario;*/
-/*	Une relation 1:n est caractérisée par un champ de type Collection dans la classe maître. 
-	La classe esclave ne porte pas de relation retour. 
-	Cette relation peut être spécifiée soit par l'annotation @OneToMany ou @ManyToMany
-*/	
-	@OneToMany
-	private List <Scenario> scenario = new ArrayList<>();
-	
-	/*@Column(name = "IDSTATU",nullable=false)
-	private String id_statut;*/
-	/*@ManyToOne
+	@ManyToOne
 	@JoinColumn(name = "statut")
-	private Statut statut;*/
-	@OneToMany
-	private List <Statut> statut  = new ArrayList<>();
+	private Statut statut;
+	
+	/*@OneToMany(mappedBy="reportappli")
+    private List<Application> applicationList = new ArrayList<Application>();*/
+	@ManyToOne
+	@JoinColumn(name = "application")
+	private Scenario application;
 	
 	@Column(name = "COMMENT")
 	private String comment;
 	
 	@Column(name = "DATE")
 	@CreatedDate
-	private final Calendar CreateDate = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+	private final Calendar createDate = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+	
+
+	public HistoryReport() {}
+
+
+	public HistoryReport(Long id, Etat etat, Statut statut, Scenario application, String comment) {
+		this.id = id;
+		this.etat = etat;
+		this.statut = statut;
+		this.application = application;
+		this.comment = comment;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public Etat getEtat() {
+		return etat;
+	}
+
+
+	public void setEtat(Etat etat) {
+		this.etat = etat;
+	}
+
+
+	public Statut getStatut() {
+		return statut;
+	}
+
+
+	public void setStatut(Statut statut) {
+		this.statut = statut;
+	}
+
+
+	public Scenario getApplication() {
+		return application;
+	}
+
+
+	public void setApplication(Scenario application) {
+		this.application = application;
+	}
+
+
+	public String getComment() {
+		return comment;
+	}
+
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+
+	public Calendar getCreateDate() {
+		return createDate;
+	}
+
+
+	@Override
+	public String toString() {
+		return "HistoryReport [id=" + id + ", etat=" + etat + ", statut=" + statut + ", application=" + application
+				+ ", comment=" + comment + ", createDate=" + createDate + "]";
+	}
+
 	
 	
 }

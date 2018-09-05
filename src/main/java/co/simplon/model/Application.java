@@ -1,70 +1,90 @@
 package co.simplon.model;
 
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 //L'annotation @Entity nous indique que cette classe est une classe persistante.
 @Entity
 public class Application {
 	@Id
-	//les 2 annotations permettent de gérer la séquence/attribution du no de l'id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "application_generator")
- 	@SequenceGenerator(name="application_generator", sequenceName = "application_seq", allocationSize=1)
+	// les 2 annotations permettent de gérer la séquence/attribution du no de l'id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "application_generator")
+	@SequenceGenerator(name = "application_generator", sequenceName = "application_seq", allocationSize = 1)
 	@Column(name = "ID")
-	private Long id_application;
+	private Long id;
+
+	/*
+	 * @ManyToOne(fetch = FetchType.LAZY)
+	 * 
+	 * @JoinColumn(name = "fk_name_aplication")
+	 */
+	@Column(name = "NAME", nullable = false)
+	private String name;
+
+	/*@ManyToOne(fetch = FetchType.LAZY)*/
+	/*@ManyToOne
+	@JoinColumn(name = "fk_historyreporappli")
+	private HistoryReport reportappli;*/
+
+	@JsonIgnore
+	//pour une categorie j'ai plusieurs aliments
+	@OneToMany(mappedBy = "application", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<HistoryReport> histoReportAppli;	
 	
-	@Column(name = "NAME",nullable=false)
-	private String name_aplication;
-	
-/*	@OneToMany
-	private Set<Scenario> scenario;*/
-	
-	public Application() {};
-
-	public Application(Long id_application, String name_aplication, Set<Scenario> scenario) {
-		this.id_application = id_application;
-		this.name_aplication = name_aplication;
-	//	this.scenario = scenario;
+	public Application() {
 	}
 
-	public Long getId_application() {
-		return id_application;
+	public Application(Long id, String name, Set<HistoryReport> histoReportAppli) {
+		this.id = id;
+		this.name = name;
+		this.histoReportAppli = histoReportAppli;
 	}
 
-	public void setId_application(Long id_application) {
-		this.id_application = id_application;
+	public Long getId() {
+		return id;
 	}
 
-	public String getName_aplication() {
-		return name_aplication;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setName_aplication(String name_aplication) {
-		this.name_aplication = name_aplication;
+	public String getName() {
+		return name;
 	}
 
-/*	public Set<Scenario> getScenario() {
-		return scenario;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setScenario(Set<Scenario> scenario) {
-		this.scenario = scenario;
-	}*/
-	//Methode toString qui transforme l'objet est chaine de characteres
+	public Set<HistoryReport> getHistoReportAppli() {
+		return histoReportAppli;
+	}
+
+	public void setHistoReportAppli(Set<HistoryReport> histoReportAppli) {
+		this.histoReportAppli = histoReportAppli;
+	}
+
 	@Override
 	public String toString() {
-		return "Application [id_application=" + id_application + ", name_aplication=" + name_aplication + "]";
-		/*return "Application [id_application=" + id_application + ", name_aplication=" + name_aplication + ", scenario="
-		+ scenario + "]";*/
+		return "Application [id=" + id + ", name=" + name + ", histoReportAppli=" + histoReportAppli + "]";
 	}
- 
+
+	
+	
 }

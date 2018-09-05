@@ -1,5 +1,8 @@
 package co.simplon.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
@@ -9,7 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //L'annotation @Entity nous indique que cette classe est une classe persistante.
 @Entity
@@ -19,10 +25,13 @@ public class Scenario {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "scenario_generator")
  	@SequenceGenerator(name="scenario_generator", sequenceName = "scenario_seq", allocationSize=1)
 	@Column(name = "ID")
-	private Long id_scenario;
+	private Long id;
 	
-	@Column(name = "NAME",nullable=false)
-	private String wording_scenario;
+	@Column(name = "NAMESCENA",nullable=false)
+	private String wordingScenario;
+	
+/*	@Column(name = "NAMESTATUT", nullable = false)
+	private String wordingStatut;*/
 
 	//"@ManyToOne" exprime, entre des classes Java, une relation entre entités JPA. 
 	// Ici il y a entre l'entitée "scenario" et l'entitée "application" => Plusieurs "scenario" pour UNE "application".
@@ -30,29 +39,33 @@ public class Scenario {
 	@JoinColumn(name = "aplication")
 	private Application aplication;
 	
-	public Scenario( ) {};
-	
-	public Scenario(Long id_scenario, String wording_scenario, Application aplication) {
-		super();
-		this.id_scenario = id_scenario;
-		this.wording_scenario = wording_scenario;
+	@JsonIgnore
+	@OneToMany(mappedBy = "scenario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Statut> statut;
+
+	public Scenario() {}
+
+	public Scenario(Long id, String wordingScenario, Application aplication, Set<Statut> statut) {
+		this.id = id;
+		this.wordingScenario = wordingScenario;
 		this.aplication = aplication;
+		this.statut = statut;
 	}
 
-	public Long getId_scenario() {
-		return id_scenario;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_scenario(Long id_scenario) {
-		this.id_scenario = id_scenario;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getWording_scenario() {
-		return wording_scenario;
+	public String getWordingScenario() {
+		return wordingScenario;
 	}
 
-	public void setWording_scenario(String wording_scenario) {
-		this.wording_scenario = wording_scenario;
+	public void setWordingScenario(String wordingScenario) {
+		this.wordingScenario = wordingScenario;
 	}
 
 	public Application getAplication() {
@@ -63,13 +76,22 @@ public class Scenario {
 		this.aplication = aplication;
 	}
 
+	public Set<Statut> getStatut() {
+		return statut;
+	}
+
+	public void setStatut(Set<Statut> statut) {
+		this.statut = statut;
+	}
+
 	@Override
 	public String toString() {
-		return "Scenario [id_scenario=" + id_scenario + ", wording_scenario=" + wording_scenario + ", aplication="
-				+ aplication + "]";
-	} 
-	
+		return "Scenario [id=" + id + ", wordingScenario=" + wordingScenario + ", aplication=" + aplication
+				+ ", statut=" + statut + "]";
+	}
 
+	
+	
 	
 	
 }

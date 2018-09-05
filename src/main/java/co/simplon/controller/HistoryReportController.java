@@ -25,19 +25,14 @@ public class HistoryReportController {
 	HistoryServiceImpl historyService;
 	
 	/* CODE JavaScript à lancer depuis la console HTML
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "/suivihistory/");
-	xmlhttp.setRequestHeader("Content-Type", "application/json");
-	xmlhttp.send(JSON.stringify({etat: {id:1}, scenario: {id:1}, statut: {id:1}, comment : "Test", date : '31.08.2018'}));
-
-	xmlhttp.response
 	
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "/suivihistory/");
-	xmlhttp.setRequestHeader("Content-Type", "application/json");
-	xmlhttp.send(JSON.stringify({comment : "Test", idappli : "Netcredit", idetat : "Ouvert", idscena : "Page Accueil", idstatut : "Ouvert à l heure", etat: {id:1}, scenario: {id:1}, statut: {id:1},  date : '2018-08-31'}));
+	 	var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", "/suivihistory");
+        xmlhttp.setRequestHeader("Content-Type", "application/json");
+        xmlhttp.send(JSON.stringify({comment:"essai1", date : '', application: {id:1}, etat: {id:1}, statut: {id:1}
+        }));
 
-	xmlhttp.response
+    	xmlhttp.response
 	
 	*/
 		

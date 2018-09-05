@@ -1,11 +1,19 @@
 package co.simplon.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //L'annotation @Entity nous indique que cette classe est une classe persistante.
 @Entity
@@ -15,39 +23,55 @@ public class Etat {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "etat_generator")
  	@SequenceGenerator(name="etat_generator", sequenceName = "etat_seq", allocationSize=1)
 	@Column(name = "ID")
-	private Long id_etat;
+	private Long id;
 	
+/*	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "fk_wording_etat")*/
 	@Column(name = "NAME",nullable=false)
-	private String wording_etat;
-
-	public Etat() {};
+	private String wordingEtat;
 	
-	public Etat(Long id_etat, String wording_etat) {
-		this.id_etat = id_etat;
-		this.wording_etat = wording_etat;
+	/*@ManyToOne
+	@JoinColumn(name = "fk_historyreportetat")
+	private HistoryReport reportetat;*/
+	@JsonIgnore
+	@OneToMany(mappedBy="etat", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<HistoryReport> histoReportEtat;
+
+	public Etat() {}
+
+	public Etat(Long id, String wordingEtat, Set<HistoryReport> histoReportEtat) {
+		this.id = id;
+		this.wordingEtat = wordingEtat;
+		this.histoReportEtat = histoReportEtat;
 	}
 
-	public Long getId_etat() {
-		return id_etat;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_etat(Long id_etat) {
-		this.id_etat = id_etat;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getWording_etat() {
-		return wording_etat;
+	public String getWordingEtat() {
+		return wordingEtat;
 	}
 
-	public void setWording_etat(String wording_etat) {
-		this.wording_etat = wording_etat;
+	public void setWordingEtat(String wordingEtat) {
+		this.wordingEtat = wordingEtat;
+	}
+
+	public Set<HistoryReport> getHistoReportEtat() {
+		return histoReportEtat;
+	}
+
+	public void setHistoReportEtat(Set<HistoryReport> histoReportEtat) {
+		this.histoReportEtat = histoReportEtat;
 	}
 
 	@Override
 	public String toString() {
-		return "Etat [id_etat=" + id_etat + ", wording_etat=" + wording_etat + "]";
+		return "Etat [id=" + id + ", wordingEtat=" + wordingEtat + ", histoReportEtat=" + histoReportEtat + "]";
 	}
 
-	
-	
 }
