@@ -1,7 +1,5 @@
 package co.simplon.model;
 
-
-
 import java.util.Calendar;
 import java.util.TimeZone;
 
@@ -16,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import org.springframework.data.annotation.CreatedDate;
-
 
 //L'annotation @Entity nous indique que cette classe est une classe persistante.
 @Entity
@@ -41,8 +38,12 @@ public class HistoryReport {
 	/*@OneToMany(mappedBy="reportappli")
     private List<Application> applicationList = new ArrayList<Application>();*/
 	@ManyToOne
+	@JoinColumn(name = "scenario")
+	private Scenario scenario;
+	
+	/*@ManyToOne
 	@JoinColumn(name = "application")
-	private Scenario application;
+	private Application application;*/
 	
 	@Column(name = "COMMENT")
 	private String comment;
@@ -55,11 +56,11 @@ public class HistoryReport {
 	public HistoryReport() {}
 
 
-	public HistoryReport(Long id, Etat etat, Statut statut, Scenario application, String comment) {
+	public HistoryReport(Long id, Etat etat, Statut statut, Scenario scenario, String comment) {
 		this.id = id;
 		this.etat = etat;
 		this.statut = statut;
-		this.application = application;
+		this.scenario = scenario;
 		this.comment = comment;
 	}
 
@@ -94,13 +95,13 @@ public class HistoryReport {
 	}
 
 
-	public Scenario getApplication() {
-		return application;
+	public Scenario getScenario() {
+		return scenario;
 	}
 
 
-	public void setApplication(Scenario application) {
-		this.application = application;
+	public void setScenario(Scenario scenario) {
+		this.scenario = scenario;
 	}
 
 
@@ -121,10 +122,9 @@ public class HistoryReport {
 
 	@Override
 	public String toString() {
-		return "HistoryReport [id=" + id + ", etat=" + etat + ", statut=" + statut + ", application=" + application
+		return "HistoryReport [id=" + id + ", etat=" + etat + ", statut=" + statut + ", scenario=" + scenario
 				+ ", comment=" + comment + ", createDate=" + createDate + "]";
 	}
 
-	
 	
 }

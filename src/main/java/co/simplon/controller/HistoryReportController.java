@@ -26,10 +26,11 @@ public class HistoryReportController {
 	
 	/* CODE JavaScript à lancer depuis la console HTML
 	
-	 	var xmlhttp = new XMLHttpRequest();
+	     	
+    	var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", "/suivihistory");
         xmlhttp.setRequestHeader("Content-Type", "application/json");
-        xmlhttp.send(JSON.stringify({comment:"essai1", date : '', application: {id:1}, etat: {id:1}, statut: {id:1}
+        xmlhttp.send(JSON.stringify({comment:"essai1", date : '', etat: {id:1}, statut: {id:1}, scenario: {id:1}
         }));
 
     	xmlhttp.response

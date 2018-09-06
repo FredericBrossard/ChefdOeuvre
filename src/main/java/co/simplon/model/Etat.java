@@ -28,20 +28,22 @@ public class Etat {
 /*	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_wording_etat")*/
 	@Column(name = "NAME",nullable=false)
-	private String wordingEtat;
+/*	private String wordingEtat;*/
+	private String label;
 	
-	/*@ManyToOne
-	@JoinColumn(name = "fk_historyreportetat")
-	private HistoryReport reportetat;*/
 	@JsonIgnore
 	@OneToMany(mappedBy="etat", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<HistoryReport> histoReportEtat;
+	
+	/*@JsonIgnore
+	@OneToMany(mappedBy="etat", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Scenario> scenario;*/
 
 	public Etat() {}
 
-	public Etat(Long id, String wordingEtat, Set<HistoryReport> histoReportEtat) {
+	public Etat(Long id, String label, Set<HistoryReport> histoReportEtat) {
 		this.id = id;
-		this.wordingEtat = wordingEtat;
+		this.label = label;
 		this.histoReportEtat = histoReportEtat;
 	}
 
@@ -53,12 +55,12 @@ public class Etat {
 		this.id = id;
 	}
 
-	public String getWordingEtat() {
-		return wordingEtat;
+	public String getLabel() {
+		return label;
 	}
 
-	public void setWordingEtat(String wordingEtat) {
-		this.wordingEtat = wordingEtat;
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	public Set<HistoryReport> getHistoReportEtat() {
@@ -71,7 +73,7 @@ public class Etat {
 
 	@Override
 	public String toString() {
-		return "Etat [id=" + id + ", wordingEtat=" + wordingEtat + ", histoReportEtat=" + histoReportEtat + "]";
+		return "Etat [id=" + id + ", label=" + label + ", histoReportEtat=" + histoReportEtat + "]";
 	}
 
 }

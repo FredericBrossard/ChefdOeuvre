@@ -28,7 +28,7 @@ public class Scenario {
 	private Long id;
 	
 	@Column(name = "NAMESCENA",nullable=false)
-	private String wordingScenario;
+	private String label;
 	
 /*	@Column(name = "NAMESTATUT", nullable = false)
 	private String wordingStatut;*/
@@ -43,13 +43,19 @@ public class Scenario {
 	@OneToMany(mappedBy = "scenario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Statut> statut;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "scenario", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<HistoryReport> histoReportScenario;
+	
 	public Scenario() {}
 
-	public Scenario(Long id, String wordingScenario, Application aplication, Set<Statut> statut) {
+	public Scenario(Long id, String label, Application aplication, Set<Statut> statut,
+			Set<HistoryReport> histoReportScenario) {
 		this.id = id;
-		this.wordingScenario = wordingScenario;
+		this.label = label;
 		this.aplication = aplication;
 		this.statut = statut;
+		this.histoReportScenario = histoReportScenario;
 	}
 
 	public Long getId() {
@@ -60,12 +66,12 @@ public class Scenario {
 		this.id = id;
 	}
 
-	public String getWordingScenario() {
-		return wordingScenario;
+	public String getLabel() {
+		return label;
 	}
 
-	public void setWordingScenario(String wordingScenario) {
-		this.wordingScenario = wordingScenario;
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	public Application getAplication() {
@@ -84,14 +90,19 @@ public class Scenario {
 		this.statut = statut;
 	}
 
-	@Override
-	public String toString() {
-		return "Scenario [id=" + id + ", wordingScenario=" + wordingScenario + ", aplication=" + aplication
-				+ ", statut=" + statut + "]";
+	public Set<HistoryReport> getHistoReportScenario() {
+		return histoReportScenario;
 	}
 
-	
-	
-	
+	public void setHistoReportScenario(Set<HistoryReport> histoReportScenario) {
+		this.histoReportScenario = histoReportScenario;
+	}
+
+	@Override
+	public String toString() {
+		return "Scenario [id=" + id + ", label=" + label + ", aplication=" + aplication + ", statut=" + statut
+				+ ", histoReportScenario=" + histoReportScenario + "]";
+	}
+
 	
 }

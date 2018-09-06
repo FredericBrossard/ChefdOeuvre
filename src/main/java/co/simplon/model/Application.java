@@ -37,15 +37,11 @@ public class Application {
 	@Column(name = "NAME", nullable = false)
 	private String name;
 
-	/*@ManyToOne(fetch = FetchType.LAZY)*/
-	/*@ManyToOne
-	@JoinColumn(name = "fk_historyreporappli")
-	private HistoryReport reportappli;*/
 
-	@JsonIgnore
+	/*@JsonIgnore
 	//pour une categorie j'ai plusieurs aliments
 	@OneToMany(mappedBy = "application", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<HistoryReport> histoReportAppli;	
+    private Set<HistoryReport> histoReportAppli;	*/
 	
 	public Application() {
 	}
@@ -53,7 +49,6 @@ public class Application {
 	public Application(Long id, String name, Set<HistoryReport> histoReportAppli) {
 		this.id = id;
 		this.name = name;
-		this.histoReportAppli = histoReportAppli;
 	}
 
 	public Long getId() {
@@ -72,17 +67,10 @@ public class Application {
 		this.name = name;
 	}
 
-	public Set<HistoryReport> getHistoReportAppli() {
-		return histoReportAppli;
-	}
-
-	public void setHistoReportAppli(Set<HistoryReport> histoReportAppli) {
-		this.histoReportAppli = histoReportAppli;
-	}
 
 	@Override
 	public String toString() {
-		return "Application [id=" + id + ", name=" + name + ", histoReportAppli=" + histoReportAppli + "]";
+		return "Application [id=" + id + ", name=" + name + "]";
 	}
 
 	

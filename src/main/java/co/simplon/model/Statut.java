@@ -24,43 +24,43 @@ public class Statut {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "statut_generator")
 	@SequenceGenerator(name = "statut_generator", sequenceName = "statut_seq", allocationSize = 1)
 	@Column(name = "ID")
-	private Long id_statut;
+	private Long id;
 	
 
 	@Column(name = "NAME", nullable = false)
-	private String wordingStatut;
+	private String label;
 	
 	@ManyToOne
 	@JoinColumn(name = "scenario")
 	private Scenario scenario;
 	
 	@JsonIgnore
-	//pour une categorie j'ai plusieurs aliments
 	@OneToMany(mappedBy = "statut", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<HistoryReport> histoReportAppli;
+	private Set<HistoryReport> histoReportStatut;
 	
 	public Statut() {}
 
-	public Statut(Long id_statut, String wordingStatut, Scenario scenario) {
-		this.id_statut = id_statut;
-		this.wordingStatut = wordingStatut;
+	public Statut(Long id, String label, Scenario scenario, Set<HistoryReport> histoReportStatut) {
+		this.id = id;
+		this.label = label;
 		this.scenario = scenario;
+		this.histoReportStatut = histoReportStatut;
 	}
 
-	public Long getId_statut() {
-		return id_statut;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_statut(Long id_statut) {
-		this.id_statut = id_statut;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getWordingStatut() {
-		return wordingStatut;
+	public String getLabel() {
+		return label;
 	}
 
-	public void setWordingStatut(String wordingStatut) {
-		this.wordingStatut = wordingStatut;
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	public Scenario getScenario() {
@@ -71,9 +71,21 @@ public class Statut {
 		this.scenario = scenario;
 	}
 
+	public Set<HistoryReport> getHistoReportStatut() {
+		return histoReportStatut;
+	}
+
+	public void setHistoReportStatut(Set<HistoryReport> histoReportStatut) {
+		this.histoReportStatut = histoReportStatut;
+	}
+
 	@Override
 	public String toString() {
-		return "Statut [id_statut=" + id_statut + ", wordingStatut=" + wordingStatut + ", scenario=" + scenario + "]";
+		return "Statut [id=" + id + ", label=" + label + ", scenario=" + scenario + ", histoReportStatut="
+				+ histoReportStatut + "]";
 	}
+
+	
+	
 	
 }
