@@ -9,7 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -25,26 +26,19 @@ public class Etat {
 	@Column(name = "ID")
 	private Long id;
 	
-/*	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "fk_wording_etat")*/
-	@Column(name = "NAME",nullable=false)
-/*	private String wordingEtat;*/
+	@Column(name = "LABEL",nullable=false)
 	private String label;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="etat", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<HistoryReport> histoReportEtat;
-	
-	/*@JsonIgnore
-	@OneToMany(mappedBy="etat", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Scenario> scenario;*/
+	@OneToMany(mappedBy = "etat", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ReportLineAppli> reportLineAppli;
 
 	public Etat() {}
 
-	public Etat(Long id, String label, Set<HistoryReport> histoReportEtat) {
+	public Etat(Long id, String label, Set<ReportLineAppli> reportLineAppli) {
 		this.id = id;
 		this.label = label;
-		this.histoReportEtat = histoReportEtat;
+		this.reportLineAppli = reportLineAppli;
 	}
 
 	public Long getId() {
@@ -63,17 +57,18 @@ public class Etat {
 		this.label = label;
 	}
 
-	public Set<HistoryReport> getHistoReportEtat() {
-		return histoReportEtat;
+	public Set<ReportLineAppli> getReportLineAppli() {
+		return reportLineAppli;
 	}
 
-	public void setHistoReportEtat(Set<HistoryReport> histoReportEtat) {
-		this.histoReportEtat = histoReportEtat;
+	public void setReportLineAppli(Set<ReportLineAppli> reportLineAppli) {
+		this.reportLineAppli = reportLineAppli;
 	}
 
 	@Override
 	public String toString() {
-		return "Etat [id=" + id + ", label=" + label + ", histoReportEtat=" + histoReportEtat + "]";
+		return "Etat [id=" + id + ", label=" + label + ", reportLineAppli=" + reportLineAppli + "]";
 	}
 
+	
 }

@@ -15,9 +15,8 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-//L'annotation @Entity nous indique que cette classe est une classe persistante.
 @Entity
-public class Statut {
+public class ReportLineScenario {
 
 	@Id
 	// les 2 annotations permettent de gérer la séquence/attribution du no de l'id
@@ -26,30 +25,27 @@ public class Statut {
 	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "LABEL", nullable = false)
-	private String label;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_reportLineAppli")
+	private ReportLineAppli reportLineAppli;
 
 	@ManyToOne
 	@JoinColumn(name = "fk_scenario")
 	private Scenario scenario;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "statut", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<ReportLineScenario> reportLineScenario;
+	@ManyToOne
+	@JoinColumn(name = "fk_scenarioStatut")
+	private Statut statut;
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name = "fk_statut") private HistoryReport histoReportStatut;
-	 */
+	public ReportLineScenario() {
+	}
 
-	public Statut() {	}
-
-	public Statut(Long id, String label, Scenario scenario, Set<ReportLineScenario> reportLineScenario) {
+	public ReportLineScenario(Long id, ReportLineAppli reportLineAppli, Scenario scenario, Statut statut) {
 		this.id = id;
-		this.label = label;
+		this.reportLineAppli = reportLineAppli;
 		this.scenario = scenario;
-		this.reportLineScenario = reportLineScenario;
+		this.statut = statut;
 	}
 
 	public Long getId() {
@@ -60,12 +56,12 @@ public class Statut {
 		this.id = id;
 	}
 
-	public String getLabel() {
-		return label;
+	public ReportLineAppli getReportLineAppli() {
+		return reportLineAppli;
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	public void setReportLineAppli(ReportLineAppli reportLineAppli) {
+		this.reportLineAppli = reportLineAppli;
 	}
 
 	public Scenario getScenario() {
@@ -76,20 +72,20 @@ public class Statut {
 		this.scenario = scenario;
 	}
 
-	public Set<ReportLineScenario> getReportLineScenario() {
-		return reportLineScenario;
+	public Statut getStatut() {
+		return statut;
 	}
 
-	public void setReportLineScenario(Set<ReportLineScenario> reportLineScenario) {
-		this.reportLineScenario = reportLineScenario;
+	public void setStatut(Statut statut) {
+		this.statut = statut;
 	}
 
 	@Override
 	public String toString() {
-		return "Statut [id=" + id + ", label=" + label + ", scenario=" + scenario + ", reportLineScenario="
-				+ reportLineScenario + "]";
+		return "ReportLineScenario [id=" + id + ", reportLineAppli=" + reportLineAppli + ", scenario=" + scenario
+				+ ", statut=" + statut + "]";
 	}
 
 	
-	
+
 }

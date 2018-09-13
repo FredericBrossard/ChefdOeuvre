@@ -32,6 +32,8 @@ public class HistoryReportController {
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify({comment:"essai1", date : '', etat: {id:1}, statut: {id:1}, scenario: {id:1}
         }));
+        
+        
 
     	xmlhttp.response
 	

@@ -1,8 +1,10 @@
 package co.simplon.model;
 
 import java.util.Calendar;
+import java.util.Set;
 import java.util.TimeZone;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,10 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import org.springframework.data.annotation.CreatedDate;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //L'annotation @Entity nous indique que cette classe est une classe persistante.
 @Entity
@@ -24,26 +28,23 @@ public class HistoryReport {
  	@SequenceGenerator(name="historyreport_generator", sequenceName = "historyreport_seq", allocationSize=1)
 	@Column(name = "ID")
 	private Long id;
-/*	
-	@OneToMany(mappedBy="reportetat")
-    private List<Etat> etatList = new ArrayList<Etat>();*/
+
 	@ManyToOne
-	@JoinColumn(name = "etat")
+	@JoinColumn(name = "fk_etat_appli")
 	private Etat etat;
 	
 	@ManyToOne
-	@JoinColumn(name = "statut")
+	@JoinColumn(name = "fk_statut_scenario")
 	private Statut statut;
 	
-	/*@OneToMany(mappedBy="reportappli")
-    private List<Application> applicationList = new ArrayList<Application>();*/
-	@ManyToOne
-	@JoinColumn(name = "scenario")
-	private Scenario scenario;
+/*	@JsonIgnore
+	@OneToMany(mappedBy="histoReportEtat", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Etat> etat;
 	
-	/*@ManyToOne
-	@JoinColumn(name = "application")
-	private Application application;*/
+	@JsonIgnore
+	@OneToMany(mappedBy="histoReportStatut", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Statut> statut;*/
+
 	
 	@Column(name = "COMMENT")
 	private String comment;
@@ -56,11 +57,10 @@ public class HistoryReport {
 	public HistoryReport() {}
 
 
-	public HistoryReport(Long id, Etat etat, Statut statut, Scenario scenario, String comment) {
+	public HistoryReport(Long id, Etat etat, Statut statut, String comment) {
 		this.id = id;
 		this.etat = etat;
 		this.statut = statut;
-		this.scenario = scenario;
 		this.comment = comment;
 	}
 
@@ -95,16 +95,6 @@ public class HistoryReport {
 	}
 
 
-	public Scenario getScenario() {
-		return scenario;
-	}
-
-
-	public void setScenario(Scenario scenario) {
-		this.scenario = scenario;
-	}
-
-
 	public String getComment() {
 		return comment;
 	}
@@ -122,9 +112,10 @@ public class HistoryReport {
 
 	@Override
 	public String toString() {
-		return "HistoryReport [id=" + id + ", etat=" + etat + ", statut=" + statut + ", scenario=" + scenario
-				+ ", comment=" + comment + ", createDate=" + createDate + "]";
+		return "HistoryReport [id=" + id + ", etat=" + etat + ", statut=" + statut + ", comment=" + comment
+				+ ", createDate=" + createDate + "]";
 	}
+
 
 	
 }

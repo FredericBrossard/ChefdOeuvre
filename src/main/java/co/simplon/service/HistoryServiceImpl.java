@@ -31,7 +31,6 @@ public class HistoryServiceImpl implements HistoryService {
 	//Recupération par ID, mais l'adapter pour effetcuer une recupération d'un rapport sur une date.
 	@Override
 	public Optional<HistoryReport> findReportbyId(int date) {
-		// TODO Auto-generated method stub
 		return null;
 	};
 	

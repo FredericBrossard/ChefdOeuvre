@@ -1,18 +1,16 @@
 package co.simplon.model;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -29,26 +27,25 @@ public class Application {
 	@Column(name = "ID")
 	private Long id;
 
-	/*
-	 * @ManyToOne(fetch = FetchType.LAZY)
-	 * 
-	 * @JoinColumn(name = "fk_name_aplication")
-	 */
 	@Column(name = "NAME", nullable = false)
 	private String name;
 
-
-	/*@JsonIgnore
-	//pour une categorie j'ai plusieurs aliments
+	@JsonIgnore
 	@OneToMany(mappedBy = "application", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<HistoryReport> histoReportAppli;	*/
+    private Set<Scenario> scenario;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "application", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ReportLineAppli> reportLineAppli;
+
 	public Application() {
 	}
 
-	public Application(Long id, String name, Set<HistoryReport> histoReportAppli) {
+	public Application(Long id, String name, Set<Scenario> scenario, Set<ReportLineAppli> reportLineAppli) {
 		this.id = id;
 		this.name = name;
+		this.scenario = scenario;
+		this.reportLineAppli = reportLineAppli;
 	}
 
 	public Long getId() {
@@ -67,12 +64,27 @@ public class Application {
 		this.name = name;
 	}
 
+	public Set<Scenario> getScenario() {
+		return scenario;
+	}
+
+	public void setScenario(Set<Scenario> scenario) {
+		this.scenario = scenario;
+	}
+
+	public Set<ReportLineAppli> getReportLineAppli() {
+		return reportLineAppli;
+	}
+
+	public void setReportLineAppli(Set<ReportLineAppli> reportLineAppli) {
+		this.reportLineAppli = reportLineAppli;
+	}
 
 	@Override
 	public String toString() {
-		return "Application [id=" + id + ", name=" + name + "]";
+		return "Application [id=" + id + ", name=" + name + ", scenario=" + scenario + ", reportLineAppli="
+				+ reportLineAppli + "]";
 	}
 
-	
 	
 }

@@ -27,81 +27,90 @@ public class Scenario {
 	@Column(name = "ID")
 	private Long id;
 	
-	@Column(name = "NAMESCENA",nullable=false)
-	private String label;
+	@Column(name = "NAME",nullable=false)
+	private String name;
 	
-/*	@Column(name = "NAMESTATUT", nullable = false)
-	private String wordingStatut;*/
-
-	//"@ManyToOne" exprime, entre des classes Java, une relation entre entités JPA. 
-	// Ici il y a entre l'entitée "scenario" et l'entitée "application" => Plusieurs "scenario" pour UNE "application".
 	@ManyToOne
-	@JoinColumn(name = "aplication")
-	private Application aplication;
+	@JoinColumn(name = "fk_application")
+	private Application application;
+	
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "scenario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ReportLineScenario> reportLineScenario;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "scenario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Statut> statut;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "scenario", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<HistoryReport> histoReportScenario;
 	
+
 	public Scenario() {}
 
-	public Scenario(Long id, String label, Application aplication, Set<Statut> statut,
-			Set<HistoryReport> histoReportScenario) {
+
+	public Scenario(Long id, String name, Application application, Set<ReportLineScenario> reportLineScenario,
+			Set<Statut> statut) {
 		this.id = id;
-		this.label = label;
-		this.aplication = aplication;
+		this.name = name;
+		this.application = application;
+		this.reportLineScenario = reportLineScenario;
 		this.statut = statut;
-		this.histoReportScenario = histoReportScenario;
 	}
+
 
 	public Long getId() {
 		return id;
 	}
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getLabel() {
-		return label;
+
+	public String getName() {
+		return name;
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Application getAplication() {
-		return aplication;
+
+	public Application getApplication() {
+		return application;
 	}
 
-	public void setAplication(Application aplication) {
-		this.aplication = aplication;
+
+	public void setApplication(Application application) {
+		this.application = application;
 	}
+
+
+	public Set<ReportLineScenario> getReportLineScenario() {
+		return reportLineScenario;
+	}
+
+
+	public void setReportLineScenario(Set<ReportLineScenario> reportLineScenario) {
+		this.reportLineScenario = reportLineScenario;
+	}
+
 
 	public Set<Statut> getStatut() {
 		return statut;
 	}
 
+
 	public void setStatut(Set<Statut> statut) {
 		this.statut = statut;
 	}
 
-	public Set<HistoryReport> getHistoReportScenario() {
-		return histoReportScenario;
-	}
-
-	public void setHistoReportScenario(Set<HistoryReport> histoReportScenario) {
-		this.histoReportScenario = histoReportScenario;
-	}
 
 	@Override
 	public String toString() {
-		return "Scenario [id=" + id + ", label=" + label + ", aplication=" + aplication + ", statut=" + statut
-				+ ", histoReportScenario=" + histoReportScenario + "]";
+		return "Scenario [id=" + id + ", name=" + name + ", application=" + application + ", reportLineScenario="
+				+ reportLineScenario + ", statut=" + statut + "]";
 	}
 
 	

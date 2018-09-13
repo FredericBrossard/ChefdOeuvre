@@ -3,16 +3,19 @@ INSERT INTO public.application(
 	VALUES (1,'NetCredit'), (2,'NetDemat'), (3,'ODEJ'), (4,'Crédit Bail Santé'), (5,'SELL - Outil d Aide à la Vente'), (6,'Webmarchand Crédit Auto');
 
  INSERT INTO public.etat(
-	id, name)
+	id, label)
 	VALUES (1, 'Ouvert'), (2, 'Accès à l application limité, diagnostic en cours'), (3, 'Service indisponible, l incident est en cours d analyse par les équipes'); 
 
 INSERT INTO public.scenario(
-	id, namescena, aplication)
+	id, name, fk_application)
 	VALUES (1, 'Page accueil', 1), (2, 'Offre alternative', 1), (3, 'Utilisation carte', 1), (4, 'Entrée dossier papier', 1), (5, 'Entrée dossier démat', 2), (6, 'Automobile', 3),
 	(7, 'Distribution', 3) , (8, 'Interface CBS', 4), (9, 'Page accueil', 5), (10, 'Saisie dossier', 5), (11, 'Vente crédit auto', 6);
-	
-	INSERT INTO public.statut(
-	id, name, scenario)
+
+
+
+
+INSERT INTO public.statut(
+	id, label, fk_scenario)
 	VALUES  
 (1, 'Ouverture à l heure', 1), 
 (2, 'Application indisponible', 1), 
@@ -45,3 +48,31 @@ INSERT INTO public.scenario(
 (29, 'Ouverture à l heure', 11), 
 (30, 'Souscription auto API indisponible', 11), 
 (31, 'Ralentissement, surveillance en cours', 11);
+
+
+INSERT INTO public.report
+  (Id, date)
+VALUES 
+  (1,'2018-09-10T11:44:44.797'),
+  (2,'2018-10-10T11:44:44.797'),
+  (3,'2018-01-01T11:44:44.797'),
+  (4,'2018-12-12T11:44:44.797')
+;
+
+INSERT INTO public.report_line_appli 
+   (id, comment, fk_application, fk_etat, fk_report)
+VALUES 
+   (1,'essai', 1, 1, 1), 
+   (2,'test', 1, 2, 1) 
+;
+
+INSERT INTO public.report_line_scenario 
+   (id, fk_report_line_appli, fk_scenario, fk_scenario_statut)
+VALUES 
+   (1, 1, 1, 1),
+   (2, 1, 2, 2)
+;
+
+
+
+
