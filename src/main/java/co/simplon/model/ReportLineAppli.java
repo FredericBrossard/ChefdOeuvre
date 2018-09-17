@@ -26,6 +26,7 @@ public class ReportLineAppli {
 	@Column(name = "ID")
 	private Long id;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "fk_report")
 	private Report report;
@@ -42,7 +43,6 @@ public class ReportLineAppli {
 	private String comment;
 	
 
-	@JsonIgnore
 	@OneToMany(mappedBy="reportLineAppli", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<ReportLineScenario> listReportLineScenario;
 	

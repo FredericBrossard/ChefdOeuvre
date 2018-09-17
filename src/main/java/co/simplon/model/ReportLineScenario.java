@@ -1,8 +1,5 @@
 package co.simplon.model;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,7 +22,7 @@ public class ReportLineScenario {
 	@Column(name = "ID")
 	private Long id;
 
-	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "fk_reportLineAppli")
 	private ReportLineAppli reportLineAppli;

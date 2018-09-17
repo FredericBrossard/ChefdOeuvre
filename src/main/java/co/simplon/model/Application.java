@@ -32,20 +32,20 @@ public class Application {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "application", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Scenario> scenario;
+    private Set<Scenario> listScenario;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "application", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ReportLineAppli> reportLineAppli;
+    private Set<ReportLineAppli> listReportLineAppli;
 
 	public Application() {
 	}
 
-	public Application(Long id, String name, Set<Scenario> scenario, Set<ReportLineAppli> reportLineAppli) {
+	public Application(Long id, String name, Set<Scenario> listScenario, Set<ReportLineAppli> listReportLineAppli) {
 		this.id = id;
 		this.name = name;
-		this.scenario = scenario;
-		this.reportLineAppli = reportLineAppli;
+		this.listScenario = listScenario;
+		this.listReportLineAppli = listReportLineAppli;
 	}
 
 	public Long getId() {
@@ -64,27 +64,28 @@ public class Application {
 		this.name = name;
 	}
 
-	public Set<Scenario> getScenario() {
-		return scenario;
+	public Set<Scenario> getListScenario() {
+		return listScenario;
 	}
 
-	public void setScenario(Set<Scenario> scenario) {
-		this.scenario = scenario;
+	public void setListScenario(Set<Scenario> listScenario) {
+		this.listScenario = listScenario;
 	}
 
-	public Set<ReportLineAppli> getReportLineAppli() {
-		return reportLineAppli;
+	public Set<ReportLineAppli> getListReportLineAppli() {
+		return listReportLineAppli;
 	}
 
-	public void setReportLineAppli(Set<ReportLineAppli> reportLineAppli) {
-		this.reportLineAppli = reportLineAppli;
+	public void setListReportLineAppli(Set<ReportLineAppli> listReportLineAppli) {
+		this.listReportLineAppli = listReportLineAppli;
 	}
 
 	@Override
 	public String toString() {
-		return "Application [id=" + id + ", name=" + name + ", scenario=" + scenario + ", reportLineAppli="
-				+ reportLineAppli + "]";
+		return "Application [id=" + id + ", name=" + name + ", listScenario=" + listScenario + ", listReportLineAppli="
+				+ listReportLineAppli + "]";
 	}
 
+	
 	
 }

@@ -50,7 +50,7 @@ public class ReportController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
         public Report findById(@PathVariable(value="id") Long id) {
-        System.out.println("id = " + id);
+        System.out.println("Methode findById de ReportController sur id = " + id);
         Optional<Report> reportOpt =  reportService.findReportbyId(id);
         Report result;
         if (reportOpt.isPresent()) {

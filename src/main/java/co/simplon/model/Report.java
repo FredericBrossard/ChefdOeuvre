@@ -35,7 +35,7 @@ public class Report {
 	private final Calendar date = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 	
 
-	@JsonIgnore
+	//@JsonIgnore
 	@OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<ReportLineAppli> lineAppli;
 	

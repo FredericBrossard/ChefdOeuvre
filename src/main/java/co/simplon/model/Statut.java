@@ -35,7 +35,7 @@ public class Statut {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "statut", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<ReportLineScenario> reportLineScenario;
+	private Set<ReportLineScenario> listReportLineScenario;
 
 	/*
 	 * @ManyToOne
@@ -45,11 +45,11 @@ public class Statut {
 
 	public Statut() {	}
 
-	public Statut(Long id, String label, Scenario scenario, Set<ReportLineScenario> reportLineScenario) {
+	public Statut(Long id, String label, Scenario scenario, Set<ReportLineScenario> listReportLineScenario) {
 		this.id = id;
 		this.label = label;
 		this.scenario = scenario;
-		this.reportLineScenario = reportLineScenario;
+		this.listReportLineScenario = listReportLineScenario;
 	}
 
 	public Long getId() {
@@ -76,20 +76,19 @@ public class Statut {
 		this.scenario = scenario;
 	}
 
-	public Set<ReportLineScenario> getReportLineScenario() {
-		return reportLineScenario;
+	public Set<ReportLineScenario> getListReportLineScenario() {
+		return listReportLineScenario;
 	}
 
-	public void setReportLineScenario(Set<ReportLineScenario> reportLineScenario) {
-		this.reportLineScenario = reportLineScenario;
+	public void setListReportLineScenario(Set<ReportLineScenario> listReportLineScenario) {
+		this.listReportLineScenario = listReportLineScenario;
 	}
 
 	@Override
 	public String toString() {
-		return "Statut [id=" + id + ", label=" + label + ", scenario=" + scenario + ", reportLineScenario="
-				+ reportLineScenario + "]";
+		return "Statut [id=" + id + ", label=" + label + ", scenario=" + scenario + ", listReportLineScenario="
+				+ listReportLineScenario + "]";
 	}
 
-	
 	
 }

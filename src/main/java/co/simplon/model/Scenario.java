@@ -37,23 +37,23 @@ public class Scenario {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "scenario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ReportLineScenario> reportLineScenario;
+    private Set<ReportLineScenario> listReportLineScenario;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "scenario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Statut> statut;
+    private Set<Statut> listStatut;
 	
 
 	public Scenario() {}
 
 
-	public Scenario(Long id, String name, Application application, Set<ReportLineScenario> reportLineScenario,
-			Set<Statut> statut) {
+	public Scenario(Long id, String name, Application application, Set<ReportLineScenario> listReportLineScenario,
+			Set<Statut> listStatut) {
 		this.id = id;
 		this.name = name;
 		this.application = application;
-		this.reportLineScenario = reportLineScenario;
-		this.statut = statut;
+		this.listReportLineScenario = listReportLineScenario;
+		this.listStatut = listStatut;
 	}
 
 
@@ -87,31 +87,32 @@ public class Scenario {
 	}
 
 
-	public Set<ReportLineScenario> getReportLineScenario() {
-		return reportLineScenario;
+	public Set<ReportLineScenario> getListReportLineScenario() {
+		return listReportLineScenario;
 	}
 
 
-	public void setReportLineScenario(Set<ReportLineScenario> reportLineScenario) {
-		this.reportLineScenario = reportLineScenario;
+	public void setListReportLineScenario(Set<ReportLineScenario> listReportLineScenario) {
+		this.listReportLineScenario = listReportLineScenario;
 	}
 
 
-	public Set<Statut> getStatut() {
-		return statut;
+	public Set<Statut> getListStatut() {
+		return listStatut;
 	}
 
 
-	public void setStatut(Set<Statut> statut) {
-		this.statut = statut;
+	public void setListStatut(Set<Statut> listStatut) {
+		this.listStatut = listStatut;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Scenario [id=" + id + ", name=" + name + ", application=" + application + ", reportLineScenario="
-				+ reportLineScenario + ", statut=" + statut + "]";
+		return "Scenario [id=" + id + ", name=" + name + ", application=" + application + ", listReportLineScenario="
+				+ listReportLineScenario + ", listStatut=" + listStatut + "]";
 	}
+
 
 	
 }

@@ -62,17 +62,26 @@ VALUES
 INSERT INTO public.report_line_appli 
    (id, comment, fk_application, fk_etat, fk_report)
 VALUES 
-   (1,'essai', 1, 1, 1), 
-   (2,'test', 1, 2, 1) 
+   (1,'R.A.S', 1, 1, 1), 
+   (2,'Appli utilisable', 2, 3, 1),
+   (3,'R.A.S', 3, 2, 1),
+   (4,'R.A.S', 4, 2, 1),
+   (5,'Appli Hors Usage Vendeur Merignac', 5, 1, 1),
+   (6,'R.A.S', 6, 3, 1)
 ;
 
 INSERT INTO public.report_line_scenario 
    (id, fk_report_line_appli, fk_scenario, fk_scenario_statut)
 VALUES 
    (1, 1, 1, 1),
-   (2, 1, 2, 2)
+   (2, 1, 2, 1),
+   (3, 1, 3, 1),
+   (4, 1, 4, 1),
+   (5, 2, 5, 2),
+   (6, 3, 6, 1),
+   (7, 3, 7, 2),
+   (8, 4, 8, 1),
+   (9, 5, 9, 1),
+   (10,5,10, 1),
+   (11,6, 11,3)
 ;
-
-
-
-
