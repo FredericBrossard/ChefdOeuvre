@@ -9,4 +9,6 @@ import co.simplon.model.Etat;
 @Named
 public interface EtatRepository extends JpaRepository<Etat, Long> {
 
+	public Etat findByLabel(String label);
+	
 }

@@ -18,4 +18,10 @@ public class EtatServiceImpl implements EtatService {
 		return etatRepository.findAll();
 	}
 
+	@Override
+	public Etat findByLabel(String label) {
+		
+		return etatRepository.findByLabel(label);
+	}
+
 }

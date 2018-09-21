@@ -19,7 +19,7 @@ INSERT INTO public.statut(
 	VALUES  
 (1, 'Ouverture à l heure', 1), 
 (2, 'Application indisponible', 1), 
-(3, 'Ouverture a l heure', 2), 
+(3, 'Ouverture à l heure', 2), 
 (4, 'Offre alternative indisponible', 2), 
 (5,  'Ralentissement, surveillance en cours', 2), 
 (6, 'Ouverture à l heure', 3), 
@@ -53,35 +53,35 @@ INSERT INTO public.statut(
 INSERT INTO public.report
   (Id, date)
 VALUES 
-  (1,'2018-09-10T11:44:44.797'),
-  (2,'2018-10-10T11:44:44.797'),
-  (3,'2018-01-01T11:44:44.797'),
-  (4,'2018-12-12T11:44:44.797')
+  (nextval('report_seq'),'2018-09-10T11:44:44.797'),
+  (nextval('report_seq'),'2018-10-10T11:44:44.797'),
+  (nextval('report_seq'),'2018-01-01T11:44:44.797'),
+  (nextval('report_seq'),'2018-12-12T11:44:44.797')
 ;
 
 INSERT INTO public.report_line_appli 
    (id, comment, fk_application, fk_etat, fk_report)
 VALUES 
-   (1,'R.A.S', 1, 1, 1), 
-   (2,'Appli utilisable', 2, 3, 1),
-   (3,'R.A.S', 3, 2, 1),
-   (4,'R.A.S', 4, 2, 1),
-   (5,'Appli Hors Usage Vendeur Merignac', 5, 1, 1),
-   (6,'R.A.S', 6, 3, 1)
+   (nextval('report_line_appli_seq'),'R.A.S', 1, 1, 1), 
+   (nextval('report_line_appli_seq'),'Appli utilisable', 2, 3, 1),
+   (nextval('report_line_appli_seq'),'R.A.S', 3, 2, 1),
+   (nextval('report_line_appli_seq'),'R.A.S', 4, 2, 1),
+   (nextval('report_line_appli_seq'),'Appli Hors Usage Vendeur Merignac', 5, 1, 1),
+   (nextval('report_line_appli_seq'),'R.A.S', 6, 3, 1)
 ;
 
 INSERT INTO public.report_line_scenario 
    (id, fk_report_line_appli, fk_scenario, fk_scenario_statut)
 VALUES 
-   (1, 1, 1, 1),
-   (2, 1, 2, 1),
-   (3, 1, 3, 1),
-   (4, 1, 4, 1),
-   (5, 2, 5, 2),
-   (6, 3, 6, 1),
-   (7, 3, 7, 2),
-   (8, 4, 8, 1),
-   (9, 5, 9, 1),
-   (10,5,10, 1),
-   (11,6, 11,3)
+   (nextval('report_line_scenario_seq'), 1, 1, 1),
+   (nextval('report_line_scenario_seq'), 1, 2, 3),
+   (nextval('report_line_scenario_seq'), 1, 3, 6),
+   (nextval('report_line_scenario_seq'), 1, 4, 9),
+   (nextval('report_line_scenario_seq'), 2, 5, 12),
+   (nextval('report_line_scenario_seq'), 3, 6, 16),
+   (nextval('report_line_scenario_seq'), 3, 7, 18),
+   (nextval('report_line_scenario_seq'), 4, 8, 21),
+   (nextval('report_line_scenario_seq'), 5, 9, 24),
+   (nextval('report_line_scenario_seq'),5,10, 28),
+   (nextval('report_line_scenario_seq'),6, 11,30)
 ;

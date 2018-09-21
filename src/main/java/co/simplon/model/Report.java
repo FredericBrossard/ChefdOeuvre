@@ -16,15 +16,14 @@ import javax.persistence.SequenceGenerator;
 
 import org.springframework.data.annotation.CreatedDate;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Report {
 
 	@Id
 	// les 2 annotations permettent de gérer la séquence/attribution du no de l'id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "statut_generator")
-	@SequenceGenerator(name = "statut_generator", sequenceName = "statut_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "report_generator")
+	@SequenceGenerator(name = "report_generator", sequenceName = "report_seq", allocationSize = 1)
 	@Column(name = "ID")
 	private Long id;
 
@@ -33,11 +32,12 @@ public class Report {
 	@Column(name = "date")
 	@CreatedDate
 	private final Calendar date = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+/*	private final Calendar date = Calendar.getInstance();*/
 	
 
 	//@JsonIgnore
 	@OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<ReportLineAppli> lineAppli;
+	private Set<ReportLineAppli> listLineAppli;
 	
 
 	public Report() {
@@ -46,7 +46,7 @@ public class Report {
 
 	public Report(Long id, Set<ReportLineAppli> lineAppli) {
 		this.id = id;
-		this.lineAppli = lineAppli;
+		this.listLineAppli = lineAppli;
 	}
 
 
@@ -61,12 +61,15 @@ public class Report {
 
 
 	public Set<ReportLineAppli> getLineAppli() {
-		return lineAppli;
+		return listLineAppli;
 	}
 
 
-	public void setLineAppli(Set<ReportLineAppli> lineAppli) {
-		this.lineAppli = lineAppli;
+	public void setLineAppli(Set<ReportLineAppli> lineApplis) {
+		this.listLineAppli = lineApplis;
+		for(ReportLineAppli lineAppli : lineApplis) {
+			lineAppli.setReport(this);
+		}
 	}
 
 
@@ -77,7 +80,7 @@ public class Report {
 
 	@Override
 	public String toString() {
-		return "Report [id=" + id + ", date=" + date + ", lineAppli=" + lineAppli + "]";
+		return "Report [id=" + id + ", date=" + date + ", lineAppli=" + listLineAppli + "]";
 	}
 
 

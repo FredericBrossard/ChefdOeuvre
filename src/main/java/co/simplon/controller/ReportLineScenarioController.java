@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import co.simplon.model.LineReport;
 import co.simplon.model.ReportLineScenario;
-import co.simplon.service.LineServiceImpl;
 import co.simplon.service.ReportLineScenarioServiceImpl;
 
 @Controller

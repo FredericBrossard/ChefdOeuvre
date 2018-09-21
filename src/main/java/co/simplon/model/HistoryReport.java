@@ -1,10 +1,10 @@
 package co.simplon.model;
 
 import java.util.Calendar;
-import java.util.Set;
+
 import java.util.TimeZone;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,12 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import org.springframework.data.annotation.CreatedDate;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 //L'annotation @Entity nous indique que cette classe est une classe persistante.
 @Entity

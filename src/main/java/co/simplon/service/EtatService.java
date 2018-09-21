@@ -8,4 +8,6 @@ public interface EtatService {
 
 	public List<Etat>findAllEtat();
 	
+	public Etat findByLabel(String label);
+	
 }

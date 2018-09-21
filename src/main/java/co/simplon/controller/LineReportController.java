@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import co.simplon.model.LineReport;
-import co.simplon.model.Report;
 import co.simplon.service.LineService;
 
 @Controller

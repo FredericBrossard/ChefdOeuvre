@@ -21,8 +21,8 @@ public class ReportLineAppli {
 
 	@Id
 	// les 2 annotations permettent de gérer la séquence/attribution du no de l'id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "statut_generator")
-	@SequenceGenerator(name = "statut_generator", sequenceName = "statut_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "report_line_appli_generator")
+	@SequenceGenerator(name = "report_line_appli_generator", sequenceName = "report_line_appli_seq", allocationSize = 1)
 	@Column(name = "ID")
 	private Long id;
 
@@ -116,14 +116,20 @@ public class ReportLineAppli {
 	}
 
 
-	public void setListReportLineScenario(Set<ReportLineScenario> listReportLineScenario) {
+/*	public void setListReportLineScenario(Set<ReportLineScenario> listReportLineScenario) {
 		this.listReportLineScenario = listReportLineScenario;
-	}
+	}*/
 
+		public void setListReportLineScenario(Set<ReportLineScenario> listReportLineScenarios) {
+	this.listReportLineScenario = listReportLineScenarios;
+	for(ReportLineScenario lineScenario : listReportLineScenarios) {
+		lineScenario.setReportLineAppli(this);
+	}
+}
 
 	@Override
 	public String toString() {
-		return "ReportLineAppli [id=" + id + ", report=" + report + ", application=" + application + ", etat=" + etat
+		return "ReportLineAppli [id=" + id + /*", report=" + report */ ", application=" + application + ", etat=" + etat
 				+ ", comment=" + comment + ", listReportLineScenario=" + listReportLineScenario + "]";
 	}
 
