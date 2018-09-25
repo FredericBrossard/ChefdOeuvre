@@ -1,17 +1,15 @@
 package co.simplon.service;
 
-import java.security.NoSuchProviderException;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
+
 import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.websocket.Session;
 
-import org.apache.logging.log4j.message.Message;
 
 import co.simplon.model.Application;
 
@@ -24,22 +22,6 @@ import co.simplon.repository.ReportLineAppliRepository;
 import co.simplon.repository.ReportLineScenarioRepository;
 import co.simplon.repository.ReportRepository;
 
-import java.io.IOException;
-
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.BodyPart;
-
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.swing.JOptionPane;;
 
 @Named
 public class ReportServiceImpl implements ReportService {
@@ -81,6 +63,12 @@ public class ReportServiceImpl implements ReportService {
 
 		return reportRepository.findById(id);
 	}
+	
+/*	@Override
+	public Optional<Report> findReportByIdByApplicationAsc(Long id) {
+		
+		return reportRepository.findReportByIdByApplicationAsc(id);
+	}*/
 
 	// Creation d'un rapport du jour
 	@Override
@@ -153,10 +141,20 @@ public class ReportServiceImpl implements ReportService {
 		return report.getId();
 	}
 	// Methode d'envoi de mail
-	public void sendEmail () {
+/*	public Boolean sendEmail () {
 		
 		SendEmail executionSendMail = new SendEmail();
-		executionSendMail.envoyer();
+		return executionSendMail.envoyer();
+		   
+	}*/
+	
+	// Methode d'envoi de mail
+	public Boolean sendEmail (Report report, String emailAdresse) {
+		
+		SendEmail executionSendMail = new SendEmail();
+		return executionSendMail.envoyer(report, emailAdresse);
 		   
 	}
+
+
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.inject.Inject;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import co.simplon.model.MailInfoDest;
 import co.simplon.model.Report;
 import co.simplon.service.ReportService;
 
@@ -60,13 +62,46 @@ public class ReportController {
 	}
 	*/
 	
-	@RequestMapping(value= "/sendmail", method = RequestMethod.GET)
+/*	@RequestMapping(value= "/sendmail", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public void sendOneEmail() {
 		System.out.println("Méthode sendOneEmail du controller 'ReportLineScenarionController' ");
 		reportService.sendEmail();
 
+	}*/
+	
+/*	@RequestMapping(value= "/sendmail", method = RequestMethod.GET)
+	public ResponseEntity<Boolean> sendOneEmail() {
+		System.out.println("Méthode sendOneEmail du controller 'ReportLineScenarionController' ");
+		Boolean mailSendStatus = reportService.sendEmail();
+		return new ResponseEntity<Boolean>(mailSendStatus, mailSendStatus? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR );
+
+	}*/
+	
+	
+	@RequestMapping(value= "/sendmail", method = RequestMethod.POST)
+/*	public ResponseEntity<Boolean> sendOneEmail(@RequestBody Long id, String emailAdresse ) {*/
+		public ResponseEntity<Boolean> sendOneEmail(@RequestBody MailInfoDest mailInfoDest ) {
+		
+		/*mailInfoDest.setEmailAdresseDesti("wavefred@hotmail.com");*/
+		System.out.println("mailInfoDest : " + mailInfoDest);
+		System.out.println("Méthode sendOneEmail du controller 'ReportLineScenarionController, id: " + mailInfoDest.getId());
+		
+		Boolean mailSendStatus = false;
+		System.out.println("avant");
+		Optional<Report> reportConsult = this.reportService.findReportbyId(mailInfoDest.getId());
+		System.out.println("apres, le Boolean reportConsult.isPresent() vaut : " + reportConsult.isPresent());
+		 if (reportConsult.isPresent() ) {
+			 
+			 mailSendStatus = reportService.sendEmail(reportConsult.get(), mailInfoDest.getEmailAdresseDesti());
+			 return new ResponseEntity<Boolean>(mailSendStatus, mailSendStatus? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR);
+		 }
+		 else {
+			 System.out.println("else du if reportConsult.isPresent");
+			 return new ResponseEntity<Boolean>(mailSendStatus, HttpStatus.NOT_FOUND);
+		 }
+	
 	}
 	
 	@RequestMapping(value= "/create", method = RequestMethod.GET)
@@ -84,6 +119,7 @@ public class ReportController {
 	public List<Report> findAll() {
 		System.out.println("Méthode findAll du controller 'ReportLineScenarionController' ");
 		return reportService.findAllReport();
+	
 
 	}
 
@@ -92,6 +128,7 @@ public class ReportController {
 	public Report findById(@PathVariable(value = "id") Long id) {
 		System.out.println("Methode findById de ReportController sur id = " + id);
 		Optional<Report> reportOpt = reportService.findReportbyId(id);
+	/*	Optional<Report> reportOpt = reportService.findReportByIdByApplicationAsc(id);*/
 		Report result;
 		if (reportOpt.isPresent()) {
 			result = reportOpt.get();

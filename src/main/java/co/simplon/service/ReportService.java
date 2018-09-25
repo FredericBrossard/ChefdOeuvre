@@ -15,9 +15,14 @@ public interface ReportService {
 	public Report saveReport(Report lineReport);
 	
 	public Optional<Report> findReportbyId(Long id);
+	/*public Optional<Report> findReportbyId(int id);*/
+	
+/*	public Optional<Report> findReportByIdByApplicationAsc(Long id);*/
 	
 	public Long createReport();
 	
-	public void sendEmail ();
+/*	public Boolean sendEmail ();*/
+	
+	public Boolean sendEmail (Report report, String emailAdresse);
 
 }
