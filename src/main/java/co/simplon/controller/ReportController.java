@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import co.simplon.model.Form;
 import co.simplon.model.MailInfoDest;
 import co.simplon.model.Report;
 import co.simplon.service.ReportService;
+import co.simplon.service.SendFormService;
 
 @Controller
 @RequestMapping("/suivireport")
@@ -28,6 +30,10 @@ public class ReportController {
 	@Inject
 	ReportService reportService;
 
+	@Inject
+	SendFormService sendFormService;
+
+	
 /*	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
@@ -104,6 +110,30 @@ public class ReportController {
 	
 	}
 	
+	@RequestMapping(value= "/sendform", method = RequestMethod.POST)
+			public Boolean sendOneForm(@RequestBody Form form) {
+			
+			/*mailInfoDest.setEmailAdresseDesti("wavefred@hotmail.com");*/
+			System.out.println("form: " + form);
+			System.out.println("Méthode sendOneForm du controller:" + form.getMessage());
+			
+	/*		Boolean formSendStatus = false;*/
+			System.out.println("avant");
+			return sendFormService.envoyer(form);
+			/*Optional<Form> reportConsult = this.sendFormService.envoyer(form);
+			System.out.println("apres, le Boolean reportConsult.isPresent() vaut : " + reportConsult.isPresent());
+			 if (reportConsult.isPresent() ) {
+				 
+				 formSendStatus = reportService.sendEmail(reportConsult.get(), formSendStatus.getEmailAdresseDesti());
+				 return new ResponseEntity<Boolean>(formSendStatus, formSendStatus? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR);
+			 }
+			 else {
+				 System.out.println("else du if reportConsult.isPresent");
+				 return new ResponseEntity<Boolean>(formSendStatus, HttpStatus.NOT_FOUND);
+			 }*/
+		
+		}
+	
 	@RequestMapping(value= "/create", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
@@ -136,6 +166,7 @@ public class ReportController {
 			result = null;
 		}
 
+		
 		return result;
 	}
 

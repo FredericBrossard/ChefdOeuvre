@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -37,6 +38,7 @@ public class Report {
 
 	//@JsonIgnore
 	@OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OrderBy("id")
 	private Set<ReportLineAppli> listLineAppli;
 	
 

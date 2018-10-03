@@ -96,7 +96,8 @@ public class ReportServiceImpl implements ReportService {
 
 			reportLineAppli.setReport(report);
 			reportLineAppli.setApplication(application);
-			reportLineAppli.setComment("commentaire pour " + application.getName());
+			/*reportLineAppli.setComment("commentaire pour " + application.getName());*/
+			reportLineAppli.setComment("R.A.S");
 
 			reportLineAppli.setEtat(etatService.findByLabel("Ouvert"));
 

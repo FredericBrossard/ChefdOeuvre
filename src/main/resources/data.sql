@@ -63,25 +63,25 @@ INSERT INTO public.report_line_appli
    (id, comment, fk_application, fk_etat, fk_report)
 VALUES 
    (nextval('report_line_appli_seq'),'R.A.S', 1, 1, 1), 
-   (nextval('report_line_appli_seq'),'Appli utilisable', 2, 3, 1),
-   (nextval('report_line_appli_seq'),'R.A.S', 3, 2, 1),
-   (nextval('report_line_appli_seq'),'R.A.S', 4, 2, 1),
-   (nextval('report_line_appli_seq'),'Appli Hors Usage Vendeur Merignac', 5, 1, 1),
-   (nextval('report_line_appli_seq'),'R.A.S', 6, 3, 1)
+   (nextval('report_line_appli_seq'),'R.A.S', 2, 1, 1),
+   (nextval('report_line_appli_seq'),'R.A.S', 3, 1, 1),
+   (nextval('report_line_appli_seq'),'R.A.S', 4, 1, 1),
+   (nextval('report_line_appli_seq'),'R.A.S', 5, 1, 1),
+   (nextval('report_line_appli_seq'),'R.A.S', 6, 1, 1)
 ;
 
 INSERT INTO public.report_line_scenario 
    (id, fk_report_line_appli, fk_scenario, fk_scenario_statut)
 VALUES 
    (nextval('report_line_scenario_seq'), 1, 1, 1),
-   (nextval('report_line_scenario_seq'), 1, 2, 3),
-   (nextval('report_line_scenario_seq'), 1, 3, 6),
-   (nextval('report_line_scenario_seq'), 1, 4, 9),
-   (nextval('report_line_scenario_seq'), 2, 5, 12),
-   (nextval('report_line_scenario_seq'), 3, 6, 16),
-   (nextval('report_line_scenario_seq'), 3, 7, 18),
-   (nextval('report_line_scenario_seq'), 4, 8, 21),
-   (nextval('report_line_scenario_seq'), 5, 9, 24),
-   (nextval('report_line_scenario_seq'),5,10, 28),
-   (nextval('report_line_scenario_seq'),6, 11,30)
+   (nextval('report_line_scenario_seq'), 1, 2, 1),
+   (nextval('report_line_scenario_seq'), 1, 3, 1),
+   (nextval('report_line_scenario_seq'), 1, 4, 1),
+   (nextval('report_line_scenario_seq'), 2, 5, 1),
+   (nextval('report_line_scenario_seq'), 3, 6, 1),
+   (nextval('report_line_scenario_seq'), 3, 7, 1),
+   (nextval('report_line_scenario_seq'), 4, 8, 1),
+   (nextval('report_line_scenario_seq'), 5, 9, 1),
+   (nextval('report_line_scenario_seq'),5,10, 1),
+   (nextval('report_line_scenario_seq'),6, 11,1)
 ;
