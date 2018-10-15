@@ -21,7 +21,7 @@ public class ReportLineScenario {
 	@SequenceGenerator(name = "report_line_scenario_generator", sequenceName = "report_line_scenario_seq", allocationSize = 1)
 	@Column(name = "ID")
 	private Long id;
-
+	//Le @JsonIgnore permet de ne pas avoir de boucle infinie (en sachant que les entités s'appellent chacune entre elles).
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "fk_reportLineAppli")

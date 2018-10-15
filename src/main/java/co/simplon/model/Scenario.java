@@ -34,18 +34,16 @@ public class Scenario {
 	@JoinColumn(name = "fk_application")
 	private Application application;
 	
-	
+	//Le @JsonIgnore permet de ne pas avoir de boucle infinie (en sachant que les entités s'appellent chacune entre elles).
 	@JsonIgnore
 	@OneToMany(mappedBy = "scenario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ReportLineScenario> listReportLineScenario;
-	
+	//Le @JsonIgnore permet de ne pas avoir de boucle infinie (en sachant que les entités s'appellent chacune entre elles).
 	@JsonIgnore
 	@OneToMany(mappedBy = "scenario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Statut> listStatut;
 	
-
 	public Scenario() {}
-
 
 	public Scenario(Long id, String name, Application application, Set<ReportLineScenario> listReportLineScenario,
 			Set<Statut> listStatut) {

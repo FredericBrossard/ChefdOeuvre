@@ -91,8 +91,8 @@ public class SendEmail {
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailAdresse));
 			message.setSubject("Suivi du Patrimoine Distrib / Demat");
 		
-			String titre = "<h3>Liste des Applications : </h3>";
-			String line = "<td>";
+	/*		String titre = "<h3>Liste des Applications : </h3>";
+			String line = "<td>";*/
 			String messAppli = "<h3>Voici l'état des Applications : </h3>";
 
 			// Boucle For each pour lire les occurences de lineAppli et extraire le nom des
@@ -101,7 +101,7 @@ public class SendEmail {
 				String appliName = lineAppli.getApplication().getName();
 				String appliEtat = lineAppli.getEtat().getLabel();
 				String appliComment = lineAppli.getComment();
-				messAppli = messAppli + "<li>" + appliName + " => Etat : "  + appliEtat + " ( Commentaire : " + appliComment + ")</li>";
+				messAppli = messAppli + "<li>" + appliName + " !!!!=> Etat : "  + appliEtat + "<=!!!! ( Commentaire : " + appliComment + ")</li>";
 			}
 
 		/*	for (ReportLineAppli lineAppli : report.getLineAppli()) {
@@ -122,7 +122,7 @@ public class SendEmail {
 
 			String texteMessage = "	" + "<div style=\"color:red;\"> " + "<p>Bonjour,</p> "
 					+ "<p>Veuillez trouver l'état de la production Patrimoine Distrib&Démat de la journée du " + date
-					+ " sur votre l'application mobile.</p> " + "<ul>" + messAppli + "</ul>" + "<p>Cordialement,</p>"
+					+ " sur votre application mobile.</p> " + "<ul>" + messAppli + "</ul>" + "<p>Cordialement,</p>"
 			/*				+ "<table>" + line + "</table>" */
 					+ "<p>L'Equipe Distrib&Démat.</p>" + "</div>";
 			message.setContent(texteMessage, "text/html; charset=utf-8");

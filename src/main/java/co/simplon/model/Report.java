@@ -26,31 +26,25 @@ public class Report {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "report_generator")
 	@SequenceGenerator(name = "report_generator", sequenceName = "report_seq", allocationSize = 1)
 	@Column(name = "ID")
+	//Clef primaire
 	private Long id;
-
-	/*@Column(name = "DATE", nullable = false)
-	private LocalDate Date;*/
+	// attribut date du rapport
 	@Column(name = "date")
 	@CreatedDate
 	private final Calendar date = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-/*	private final Calendar date = Calendar.getInstance();*/
 	
-
-	//@JsonIgnore
+	//Relation bidirectionnelle de type 1 "Repot" pour plusieurs "ReportLineAppli". Attribut "listLineAppli" de type lists de ReportLineAppli
 	@OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
 	@OrderBy("id")
 	private Set<ReportLineAppli> listLineAppli;
 	
-
 	public Report() {
 	}
-
 
 	public Report(Long id, Set<ReportLineAppli> lineAppli) {
 		this.id = id;
 		this.listLineAppli = lineAppli;
 	}
-
 
 	public Long getId() {
 		return id;

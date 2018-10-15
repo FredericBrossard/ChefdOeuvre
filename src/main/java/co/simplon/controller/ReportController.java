@@ -119,7 +119,12 @@ public class ReportController {
 			
 	/*		Boolean formSendStatus = false;*/
 			System.out.println("avant");
-			return sendFormService.envoyer(form);
+			Boolean formSendStatus = false;
+			formSendStatus = sendFormService.envoyer(form);
+			System.out.println("formSendStatus : " + formSendStatus);
+			return formSendStatus;
+		/*	return sendFormService.envoyer(form);*/
+			
 			/*Optional<Form> reportConsult = this.sendFormService.envoyer(form);
 			System.out.println("apres, le Boolean reportConsult.isPresent() vaut : " + reportConsult.isPresent());
 			 if (reportConsult.isPresent() ) {

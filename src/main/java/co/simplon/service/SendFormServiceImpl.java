@@ -62,8 +62,8 @@ public class SendFormServiceImpl implements SendFormService {
 			 * + date + ", sur l'application.");
 			 */
 			// Constitution du message au formlat HTML
-			String texteMessage = "	" + "<div style=\"color:red;\">" + "<p>form.getMessage()</p> "
-					+ "<p>Ce message est de " + form.getEmail() + "</p> " + "</div>";
+			String texteMessage = "	" + "<div style=\"color:green;\">" + "<p>L'email de l'expéditeur du message est : " + form.getEmail() + "</p> "
+					+ "<p>La demande de l'expéditeur est : " + form.getMessage() + "</p> " + "</div>";
 			message.setContent(texteMessage, "text/html; charset=utf-8");
 
 			// Etape 3 : Envoyer le message

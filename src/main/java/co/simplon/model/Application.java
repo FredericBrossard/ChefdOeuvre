@@ -25,15 +25,16 @@ public class Application {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "application_generator")
 	@SequenceGenerator(name = "application_generator", sequenceName = "application_seq", allocationSize = 1)
 	@Column(name = "ID")
+	//Clef primaire
 	private Long id;
-
+	//nom de l'appplicaion
 	@Column(name = "NAME", nullable = false)
 	private String name;
-
+	//relation avec la liste de scenario
 	@JsonIgnore
 	@OneToMany(mappedBy = "application", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Scenario> listScenario;
-	
+	// relation avec ReportLineAppli
 	@JsonIgnore
 	@OneToMany(mappedBy = "application", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ReportLineAppli> listReportLineAppli;
