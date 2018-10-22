@@ -70,7 +70,7 @@ public class ReportServiceImpl implements ReportService {
 		return reportRepository.findReportByIdByApplicationAsc(id);
 	}*/
 
-	// Creation d'un rapport du jour
+	// Creation d'un raport du jour
 	@Override
 	public Long createReport() {
 

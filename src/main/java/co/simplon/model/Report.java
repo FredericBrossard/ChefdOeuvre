@@ -26,14 +26,15 @@ public class Report {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "report_generator")
 	@SequenceGenerator(name = "report_generator", sequenceName = "report_seq", allocationSize = 1)
 	@Column(name = "ID")
-	//Clef primaire
+	// attribut "Clef primaire"
 	private Long id;
-	// attribut date du rapport
+	// attribut "date du rapport"
 	@Column(name = "date")
 	@CreatedDate
 	private final Calendar date = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 	
-	//Relation bidirectionnelle de type 1 "Repot" pour plusieurs "ReportLineAppli". Attribut "listLineAppli" de type lists de ReportLineAppli
+	//Relation bidirectionnelle de type 1 "Report" pour plusieurs "ReportLineAppli". 
+	//Attribut "listLineAppli" de type liste de ReportLineAppli
 	@OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
 	@OrderBy("id")
 	private Set<ReportLineAppli> listLineAppli;

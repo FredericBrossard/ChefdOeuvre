@@ -84,15 +84,10 @@ public class SendEmail {
 			// Etape 2 : Création de l'objet Message
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("frederic.brossard.pf1@gmail.com"));
-			/*
-			 * message.setRecipients(Message.RecipientType.TO,
-			 * InternetAddress.parse("wavefred@hotmail.com"));
-			 */
+
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailAdresse));
 			message.setSubject("Suivi du Patrimoine Distrib / Demat");
 		
-	/*		String titre = "<h3>Liste des Applications : </h3>";
-			String line = "<td>";*/
 			String messAppli = "<h3>Voici l'état des Applications : </h3>";
 
 			// Boucle For each pour lire les occurences de lineAppli et extraire le nom des
@@ -101,26 +96,13 @@ public class SendEmail {
 				String appliName = lineAppli.getApplication().getName();
 				String appliEtat = lineAppli.getEtat().getLabel();
 				String appliComment = lineAppli.getComment();
-				messAppli = messAppli + "<li>" + appliName + " !!!!=> Etat : "  + appliEtat + "<=!!!! ( Commentaire : " + appliComment + ")</li>";
+				messAppli = messAppli + "<li>" + appliName + " => Etat : "  + appliEtat + "<= ( Commentaire : " + appliComment + ")</li>";
 			}
 
-		/*	for (ReportLineAppli lineAppli : report.getLineAppli()) {
-				
-				String appliName = lineAppli.getApplication().getName();
-				line = line + "<tr>" + appliName + "</tr>";
-				String appliEtat = lineAppli.getEtat().getLabel();
-				line  = line + "<tr>" + appliEtat  + "</tr>";
-				line = line + "</td>";
-			}*/
-			
-			/*
-			 * message.
-			 * setText("Bonjour, veuillez trouver l'état de la production Patrimoine Distrib&Démat de la journée du "
-			 * + date + ", sur l'application.");
-			 */
 			// Constitution du message au formlat HTML
 
-			String texteMessage = "	" + "<div style=\"color:red;\"> " + "<p>Bonjour,</p> "
+	/*		String texteMessage = "	" + "<div style=\"color:red;\"> " + "<p>Bonjour,</p> "*/
+			String texteMessage = "	" + "<div>" + "<p>Bonjour,</p> "
 					+ "<p>Veuillez trouver l'état de la production Patrimoine Distrib&Démat de la journée du " + date
 					+ " sur votre application mobile.</p> " + "<ul>" + messAppli + "</ul>" + "<p>Cordialement,</p>"
 			/*				+ "<table>" + line + "</table>" */

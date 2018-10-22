@@ -13,9 +13,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@Inject
 	ApplicationRepository applicationrepository;
-		
+	// retourne la liste des applis	
 	public List<Application> findAllApplication(){
 		return applicationrepository.findAll();
-	}
-	
+	}	
 }

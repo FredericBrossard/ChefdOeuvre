@@ -90,7 +90,6 @@ public class ReportController {
 /*	public ResponseEntity<Boolean> sendOneEmail(@RequestBody Long id, String emailAdresse ) {*/
 		public ResponseEntity<Boolean> sendOneEmail(@RequestBody MailInfoDest mailInfoDest ) {
 		
-		/*mailInfoDest.setEmailAdresseDesti("wavefred@hotmail.com");*/
 		System.out.println("mailInfoDest : " + mailInfoDest);
 		System.out.println("Méthode sendOneEmail du controller 'ReportLineScenarionController, id: " + mailInfoDest.getId());
 		
@@ -111,19 +110,16 @@ public class ReportController {
 	}
 	
 	@RequestMapping(value= "/sendform", method = RequestMethod.POST)
+			//@RequestBody permet de déserialiser et de et de traduire l'objet form en objet java 
+	        //La désérialisation est le rétablissement à sa forme première d’un objet sérialisé. 
 			public Boolean sendOneForm(@RequestBody Form form) {
 			
-			/*mailInfoDest.setEmailAdresseDesti("wavefred@hotmail.com");*/
-			System.out.println("form: " + form);
 			System.out.println("Méthode sendOneForm du controller:" + form.getMessage());
 			
-	/*		Boolean formSendStatus = false;*/
-			System.out.println("avant");
 			Boolean formSendStatus = false;
 			formSendStatus = sendFormService.envoyer(form);
 			System.out.println("formSendStatus : " + formSendStatus);
 			return formSendStatus;
-		/*	return sendFormService.envoyer(form);*/
 			
 			/*Optional<Form> reportConsult = this.sendFormService.envoyer(form);
 			System.out.println("apres, le Boolean reportConsult.isPresent() vaut : " + reportConsult.isPresent());
@@ -152,7 +148,7 @@ public class ReportController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<Report> findAll() {
-		System.out.println("Méthode findAll du controller 'ReportLineScenarionController' ");
+		/*System.out.println("Méthode findAll du controller 'ReportLineScenarionController' ");*/
 		return reportService.findAllReport();
 	
 

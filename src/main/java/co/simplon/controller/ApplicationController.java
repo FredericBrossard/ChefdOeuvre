@@ -13,28 +13,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import co.simplon.model.Application;
+import co.simplon.service.ApplicationService;
 import co.simplon.service.ApplicationServiceImpl;
 
 @Controller
 @RequestMapping("/suiviappli")
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = { "http://localhost:4200" })
 public class ApplicationController {
-	
+	// Injection du Service pour utilisation de ces méthodes
 	@Inject
-	ApplicationServiceImpl application;
-	
-	
-	//http://localhost:8090/suivipatrimoine/listappli
-	
+	ApplicationService application;
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
+	// Méthode qui retourne une liste des Applications
 	public List<Application> listApplication() {
-	List<Application> list = application.findAllApplication();
-	return list;
-		
+		List<Application> list = application.findAllApplication();
+		return list;
 	}
-	
-	
-
 }

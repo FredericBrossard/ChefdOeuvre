@@ -8,6 +8,7 @@ import co.simplon.model.Form;
 public interface SendFormService {
 	
 	/*public Boolean envoyer(Form form, String emailAdresse);*/
+	//Méthode d'envoi du formulaire par mail
 	public Boolean envoyer(Form form);
 
 }

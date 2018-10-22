@@ -24,13 +24,15 @@ public class SendFormServiceImpl implements SendFormService {
 
 	private final String USERNAME = "frederic.brossard.pf1@gmail.com";
 	private final String PASSWORD = "Lolita3%";
-
+/*	private final String USERNAME = "patrimoinebnp@gmail.com";
+	private final String PASSWORD = "Lolita1%";*/
 
 /*	public Boolean envoyer(Form form, String emailAdresse) {*/
 		public Boolean envoyer(Form form) {
 
 		Boolean result = false;
-		String emailAdresse = "wavefred@hotmail.com";
+		//email destinataire
+		String emailAdresse = "patrimoinebnp@gmail.com";
 
 		// Etape 1 : Création de la session
 		Properties props = new Properties();
