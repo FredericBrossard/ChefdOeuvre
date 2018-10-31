@@ -13,6 +13,5 @@ import co.simplon.model.Scenario;
 public interface ScenarioRepository extends JpaRepository<Scenario, Long>{
 
 	public List<Scenario> findAllScenarioByApplication(Application application);
-	
-	
+		
 }

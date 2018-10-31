@@ -53,8 +53,9 @@ INSERT INTO public.statut(
 INSERT INTO public.report
   (Id, date)
 VALUES 
-  (nextval('report_seq'),'2018-09-10T11:44:44.797'),
-  (nextval('report_seq'),'2018-10-10T11:44:44.797')
+  (nextval('report_seq'),'2018-09-10T11:44:44.797')
+--  (nextval('report_seq'),'2018-09-10T11:44:44.797'),
+--  (nextval('report_seq'),'2018-10-10T11:44:44.797')
 ;
 
 INSERT INTO public.report_line_appli 
