@@ -88,7 +88,8 @@ public class SendEmail {
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailAdresse));
 			message.setSubject("Suivi du Patrimoine Distrib / Demat");
 		
-			String messAppli = "<h3>Voici l'état des Applications : </h3>";
+			//String messAppli = "<h3>Voici l'état des Applications : </h3>";
+			String messAppli = "";
 
 			// Boucle For each pour lire les occurences de lineAppli et extraire le nom des
 			// applications
@@ -96,17 +97,40 @@ public class SendEmail {
 				String appliName = lineAppli.getApplication().getName();
 				String appliEtat = lineAppli.getEtat().getLabel();
 				String appliComment = lineAppli.getComment();
-				messAppli = messAppli + "<li>" + appliName + " => Etat : "  + appliEtat + "<= ( Commentaire : " + appliComment + ")</li>";
+			//	messAppli = messAppli + "<li>" + appliName + " => Etat : "  + appliEtat + "<= ( Commentaire : " + appliComment + ")</li>";
+				messAppli = messAppli + "<tr> <td style=\"border-color: black; border-style:solid; border-width: 1px;\">" + appliName + "</td>" + "<td style=\"border-color: black; border-style:solid; border-width: 1px;\">" + appliEtat + "</td>" + "<td style=\"border-color: black; border-style:solid; border-width: 1px;\">" + appliComment + "</td> </tr> ";
 			}
 
 			// Constitution du message au formlat HTML
 
 	/*		String texteMessage = "	" + "<div style=\"color:red;\"> " + "<p>Bonjour,</p> "*/
-			String texteMessage = "	" + "<div>" + "<p>Bonjour,</p> "
+			//1er message qui fonctionne
+/*			String texteMessage = "	" + "<div>" + "<p>Bonjour,</p> "
 					+ "<p>Veuillez trouver l'état de la production Patrimoine Distrib&Démat de la journée du " + date
 					+ " sur votre application mobile.</p> " + "<ul>" + messAppli + "</ul>" + "<p>Cordialement,</p>"
-			/*				+ "<table>" + line + "</table>" */
 					+ "<p>L'Equipe Distrib&Démat.</p>" + "</div>";
+			message.setContent(texteMessage, "text/html; charset=utf-8");*/
+			String texteMessage = "	" 
+			/*		+ "<style type="text/css"> 
+					table {
+					   border-collapse: collapse; 
+					}
+					td, th 	{
+					    border: 1px solid black; 
+					}
+					</style>"
+*/					+ "<div>" 
+					+ "<p>Bonjour,</p> "
+					+ "<p>Veuillez trouver l'état de la production Patrimoine Distrib&Démat de la journée du " + date + " sur votre application mobile.</p> " 
+					+ "</br>"
+					+ "<h4>Voici l'état des Applications : </h4>"
+					+ "<table >" 
+					+ "<tr> <th>Nom Application </th> <th>Etat </th> <th>Commentaires</th> </tr>"
+					+ messAppli 
+					+ "</table>" 
+					+ "<p>Cordialement,</p>"
+					+ "<p>L'Equipe Distrib&Démat.</p>" 
+					+ "</div>";
 			message.setContent(texteMessage, "text/html; charset=utf-8");
 
 			/*
