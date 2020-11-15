@@ -2,7 +2,6 @@ package co.simplon.service;
 
 import java.util.Properties;
 
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.mail.Message;
 import javax.mail.MessagingException;

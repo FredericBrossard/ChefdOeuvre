@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import co.simplon.model.Application;
 import co.simplon.service.ApplicationService;
-import co.simplon.service.ApplicationServiceImpl;
 
 @Controller
 @RequestMapping("/suiviappli")
